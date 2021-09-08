@@ -1,8 +1,13 @@
 package ru.netology.domain;
 
+import java.util.Comparator;
 import java.util.Objects;
+import java.util.function.Function;
+import java.util.function.ToDoubleFunction;
+import java.util.function.ToIntFunction;
+import java.util.function.ToLongFunction;
 
-public class Ticket implements Comparable<Ticket> {
+public class Ticket implements Comparator <Ticket>, Comparable <Ticket> {
     private int id;
     private int travelTime;
     private int price;
@@ -20,6 +25,7 @@ public class Ticket implements Comparable<Ticket> {
         this.departureAirport = departureAirport;
         this.arrivalAirport = arrivalAirport;
     }
+
 
     public int getId() {
         return id;
@@ -66,4 +72,10 @@ public class Ticket implements Comparable<Ticket> {
     public int compareTo(Ticket o) {
         return price - o.price;
     }
+
+    @Override
+    public int compare(Ticket o1, Ticket o2) {
+        return o1.getTravelTime() - o2.getTravelTime();
+    }
 }
+

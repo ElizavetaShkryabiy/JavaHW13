@@ -6,6 +6,7 @@ import ru.netology.domain.Ticket;
 import ru.netology.repository.TicketRepository;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
@@ -17,6 +18,7 @@ public class ManagerTest {
     private Ticket toAnkara = new Ticket(2, 160, 11_000, "VKO", "ANK");
     private Ticket toChicago = new Ticket(3, 780, 35_000, "DME", "CHI");
     private Ticket toRiga = new Ticket(4, 185, 5_000, "SVO", "RIX");
+    private Ticket toAnkara2 = new Ticket(5, 100, 11_000, "VKO", "ANK");
 
 
 
@@ -53,6 +55,18 @@ public class ManagerTest {
         assertArrayEquals(expected, actual);
     }
 
+
+
+
+
+    @Test
+    public void shouldFindBestTime(){
+        manager.add(toAnkara2);
+        Ticket[] actual = manager.searchBy("VKO","ANK", toAnkara);
+        Ticket[] expected = new Ticket[]{toAnkara2,toAnkara};
+        Arrays.sort(actual);
+        assertArrayEquals(expected, actual);
+    }
 
 
 }
