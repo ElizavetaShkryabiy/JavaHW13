@@ -15,10 +15,11 @@ public class ManagerTest {
     TicketRepository productRepository = new TicketRepository();
     Manager manager = new Manager(productRepository);
     private Ticket toBelgrade = new Ticket(1, 185, 9_000, "DME", "EGO");
-    private Ticket toAnkara = new Ticket(2, 160, 11_000, "VKO", "ANK");
-    private Ticket toChicago = new Ticket(3, 780, 35_000, "DME", "CHI");
+    private Ticket toAnkara = new Ticket(2, 160, 8_000, "VKO", "ANK");
+    private Ticket toChicago = new Ticket(3, 780, 50_000, "DME", "CHI");
+    private Ticket toChicago2 = new Ticket(3, 780, 35_000, "DME", "CHI");
     private Ticket toRiga = new Ticket(4, 185, 5_000, "SVO", "RIX");
-    private Ticket toAnkara2 = new Ticket(5, 100, 11_000, "VKO", "ANK");
+    private Ticket toAnkara2 = new Ticket(5, 100, 8_000, "VKO", "ANK");
 
 
 
@@ -27,13 +28,14 @@ public class ManagerTest {
         manager.add(toBelgrade);
         manager.add(toAnkara);
         manager.add(toChicago);
+        manager.add(toChicago2);
         manager.add(toRiga);
     }
 
     @Test
     public void shouldAddItemsInRepository() {
         Ticket[] actual = manager.findAll();
-        Ticket[] expected = new Ticket[]{toRiga, toBelgrade, toAnkara, toChicago};
+        Ticket[] expected = new Ticket[]{toRiga, toAnkara, toBelgrade,toChicago2, toChicago};
         Arrays.sort(actual);
         assertArrayEquals(expected, actual);
     }
@@ -64,7 +66,7 @@ public class ManagerTest {
         manager.add(toAnkara2);
         Ticket[] actual = manager.searchBy("VKO","ANK", toAnkara);
         Ticket[] expected = new Ticket[]{toAnkara2,toAnkara};
-        Arrays.sort(actual);
+
         assertArrayEquals(expected, actual);
     }
 
