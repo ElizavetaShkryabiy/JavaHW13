@@ -45,7 +45,7 @@ public class Manager {
         for (Ticket product : repository.findAll()) {
             String expectedD = product.getDepartureAirport();
             String expectedA = product.getArrivalAirport();
-            if (expectedD == from & expectedA == to) {
+            if (expectedD.equals(from) & expectedA.equals(to)) {
                 Ticket[] tmp = new Ticket[result.length + 1];
                 System.arraycopy(result, 0, tmp, 0, result.length);
                 tmp[tmp.length - 1] = product;
